@@ -1,12 +1,12 @@
 export interface OnBoardingFormDataType {
-  age: number | null;
+  age: number;
   gender: string;
-  currentWeight: number | null;
-  height: number | null;
+  currentWeight: number;
+  height: number;
   goal: string;
   experienceLevel: string;
   workoutFrequency: string;
-  targetWeight: number | null;
+  targetWeight: number;
   activityLevel: string;
 }
 
@@ -32,5 +32,6 @@ export interface UserProfile {
 
 export interface FormDataInterface {
   defaultValues: OnBoardingFormDataType,
-  nextStep: () => void | undefined
+  nextStep: () => void | undefined,
+  setFormData: React.Dispatch<React.SetStateAction<OnBoardingFormDataType>>;
 }

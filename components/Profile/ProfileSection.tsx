@@ -82,7 +82,7 @@ const ProfileSection = () => {
   const [bmi, setBMI] = useState({ value: 0, category: '' })
   const [tdee, setTDEE] = useState()
 
-  // ✅ Fetch and populate form data
+  // Fetch and populate form data
   async function getProfile() {
     const res = await api.get("/profile");
     return res.data;

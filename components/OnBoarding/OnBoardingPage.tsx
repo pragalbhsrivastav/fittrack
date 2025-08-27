@@ -32,14 +32,14 @@ const OnBoardingPage = () => {
     const childRef = useRef<{ triggerSubmit: () => void }>(null);
 
     const [formData, setFormData] = useState<OnBoardingFormDataType>({
-        age: null,
+        age: 0,
         gender: "",
-        currentWeight: null,
-        height: null,
+        currentWeight: 0,
+        height: 0,
         goal: "",
         experienceLevel: "",
         workoutFrequency: "",
-        targetWeight: null,
+        targetWeight: 0,
         activityLevel: "",
     })
     console.log("formData ==> ", formData);
@@ -71,7 +71,7 @@ const OnBoardingPage = () => {
 
     const handleNext = () => {
         if (childRef.current) {
-            childRef.current.triggerSubmit(); // ✅ call child form submit method
+            childRef.current.triggerSubmit(); // call child form submit method
         } else {
             if (step >= 5) return
             setStep(prev => prev + 1); // for other steps
@@ -80,7 +80,7 @@ const OnBoardingPage = () => {
 
     const handleFinish = async () => {
         if (childRef.current) {
-            childRef.current.triggerSubmit(); // ✅ call child form submit method
+            childRef.current.triggerSubmit(); // call child form submit method
         }
 
         setIsLoading(true);

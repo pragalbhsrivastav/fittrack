@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { User } from 'lucide-react';
-import { FormDataInterface } from '@/types/userTypes';
+import { FormDataInterface, OnBoardingFormDataType } from '@/types/userTypes';
 
 type StepOneFormData = {
   gender: string;
@@ -73,9 +73,8 @@ const StepOne = forwardRef(
     });
 
     const onSubmit: SubmitHandler<StepOneFormData> = (data) => {
-      debugger
       console.log('Form Submitted:', data);
-      setFormData((prev : StepOneFormData)=> ({...prev, ...data}))
+      setFormData((prev : OnBoardingFormDataType)=> ({...prev, ...data}))
       nextStep();
     };
 
