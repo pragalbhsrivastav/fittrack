@@ -1,6 +1,9 @@
 import { Anek_Latin, Cedarville_Cursive, Inter } from "next/font/google";
 
-export const Latin =  Inter({})
+export const Latin =  Inter({
+  subsets: ["latin"],  
+  display: "swap",    
+})
 
 export const anekLatin = Anek_Latin({
   weight: ['400'],
