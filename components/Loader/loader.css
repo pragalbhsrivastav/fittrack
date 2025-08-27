@@ -1,0 +1,107 @@
+.animate-spin-slow {
+    animation: spin 20s linear infinite;
+}
+
+.animate-lift {
+    animation: lift 1.5s ease-in-out infinite alternate;
+}
+
+.animate-bounce-left {
+    animation: bounceLeft 1.5s ease-in-out infinite alternate;
+}
+
+.animate-bounce-right {
+    animation: bounceRight 1.5s ease-in-out infinite alternate;
+}
+
+.animate-bounce-letter {
+    animation: bounceUp 1.4s ease-in-out infinite;
+}
+
+.animate-pulse-bar {
+    animation: pulseBar 1.2s ease-in-out infinite;
+}
+
+.bg-gradient-radial {
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+}
+
+@keyframes lift {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-8px) rotate(2deg);
+    }
+}
+
+@keyframes bounceLeft {
+    0% {
+        transform: translateX(0px) rotateZ(0deg);
+    }
+
+    100% {
+        transform: translateX(-2px) rotateZ(-5deg);
+    }
+}
+
+@keyframes bounceRight {
+    0% {
+        transform: translateX(0px) rotateZ(0deg);
+    }
+
+    100% {
+        transform: translateX(2px) rotateZ(5deg);
+    }
+}
+
+@keyframes bounceUp {
+
+    0%,
+    60%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    30% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes pulseBar {
+
+    0%,
+    100% {
+        transform: scaleY(0.4);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .animate-lift {
+        transform: scale(0.8);
+    }
+}
+
+@media (max-width: 480px) {
+    .animate-lift {
+        transform: scale(0.7);
+    }
+}
