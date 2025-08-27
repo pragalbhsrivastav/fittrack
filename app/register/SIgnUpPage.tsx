@@ -15,6 +15,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import api from '@/lib/axios';
+import { AxiosError } from 'axios';
 
 const SIgnUpPage = () => {
 
@@ -29,7 +30,7 @@ const SIgnUpPage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
 
-    const onSubmit = async (data: FormData) => {
+    const onSubmit = async (data: RegisterSchemaType) => {
         setIsLoading(true)
 
         try {
@@ -39,13 +40,20 @@ const SIgnUpPage = () => {
 
             toast.success('Signip successfully 😁')
             localStorage.setItem('token', res.data.token)
-            setTimeout(()=>{
+            setTimeout(() => {
                 window.location.href = '/onboarding'
-            },1000)
+            }, 1000)
 
-        } catch (err) {
-        console.log("err ==> ", err);
-            toast.error(err?.response?.data?.message || err.message)
+        } catch (error) {
+            const err = error as AxiosError<{ message?: string; error?: string }>;
+
+            const errorMessage =
+                err.response?.data?.message ||
+                err.response?.data?.error ||
+                err.message ||
+                "Something went wrong";
+
+            toast.error(errorMessage);
         } finally {
             setIsLoading(false)
         }

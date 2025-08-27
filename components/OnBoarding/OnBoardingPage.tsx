@@ -18,6 +18,7 @@ import api from '@/lib/axios';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/hooks/UserContext';
+import { AxiosError } from 'axios';
 
 
 const OnBoardingPage = () => {
@@ -90,8 +91,16 @@ const OnBoardingPage = () => {
 
             toast.success('Onboarded Successfull 😁')
             router.push('/dashboard')
-        } catch (err) {
-            toast.error(err?.response?.data?.message || err.message)
+        } catch (error) {
+            const err = error as AxiosError<{ message?: string; error?: string }>;
+
+            const errorMessage =
+                err.response?.data?.message ||
+                err.response?.data?.error ||
+                err.message ||
+                "Something went wrong";
+
+            toast.error(errorMessage);
         } finally {
             setIsLoading(false)
         }

@@ -18,6 +18,7 @@ import { toast } from 'sonner';
 import api from '@/lib/axios';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@/hooks/UserContext';
+import { AxiosError } from 'axios';
 
 const SignInPage = () => {
 
@@ -44,7 +45,7 @@ const SignInPage = () => {
         }
     }, [router, user])
 
-    const onSubmit = async (data: FormData) => {
+    const onSubmit = async (data: SignInSchemaType) => {
         setIsLoading(true);
 
         try {
@@ -58,8 +59,16 @@ const SignInPage = () => {
             setTimeout(() => {
                 router.push('/onboarding')
             }, 1000)
-        } catch (err) {
-            toast.error(err?.response?.data?.message || err.message)
+        } catch (error) {
+            const err = error as AxiosError<{ message?: string; error?: string }>;
+
+            const errorMessage =
+                err.response?.data?.message ||
+                err.response?.data?.error ||
+                err.message ||
+                "Something went wrong";
+
+            toast.error(errorMessage);
         } finally {
             setIsLoading(false)
         }

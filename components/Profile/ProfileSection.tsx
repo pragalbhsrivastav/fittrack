@@ -19,6 +19,7 @@ import { Controller, useForm } from 'react-hook-form';
 import api from '@/lib/axios';
 import { toast } from 'sonner';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import { AxiosError } from 'axios';
 
 interface ProfileFormData {
   name: string;
@@ -123,9 +124,16 @@ const ProfileSection = () => {
       if (res.data?.message) {
         toast.success(res?.data?.message)
       }
-    } catch (err: any) {
-      toast.error(err?.response?.data?.message)
-      console.log(err?.response?.data?.message || err.message, 'error in update profile');
+    } catch (error) {
+      const err = error as AxiosError<{ message?: string; error?: string }>;
+
+      const errorMessage =
+        err.response?.data?.message ||
+        err.response?.data?.error ||
+        err.message ||
+        "Something went wrong";
+
+      toast.error(errorMessage);
     }
   };
 
