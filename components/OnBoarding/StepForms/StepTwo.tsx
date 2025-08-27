@@ -14,10 +14,10 @@ import { Label } from "@/components/ui/label";
 import { Target } from "lucide-react";
 import { Controller } from "react-hook-form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { FormDataInterface } from "@/types/userTypes";
+import { FormDataInterface, OnBoardingFormDataType } from "@/types/userTypes";
 
 type SteTwoFormData = {
-    goal: string | null;
+    goal: string;
 };
 
 const step2Schema = yup.object({
@@ -45,7 +45,7 @@ const StepTwo = forwardRef(
 
         const onSubmit: SubmitHandler<SteTwoFormData> = (data) => {
             console.log("Form Submitted:", data);
-            setFormData((prev: SteTwoFormData) => ({ ...prev, ...data }))
+            setFormData((prev: OnBoardingFormDataType) => ({ ...prev, ...data }))
             nextStep();
         };
 

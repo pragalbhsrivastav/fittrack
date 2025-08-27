@@ -8,7 +8,7 @@ import { Activity } from 'lucide-react'
 import React, { ForwardedRef, forwardRef, useImperativeHandle, useRef } from 'react'
 import { Controller } from 'react-hook-form'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { FormDataInterface } from '@/types/userTypes';
+import { FormDataInterface, OnBoardingFormDataType } from '@/types/userTypes';
 
 const options = [
     {
@@ -62,7 +62,7 @@ const StepThree = forwardRef(
 
         const onSubmit: SubmitHandler<StepThreeFormData> = (data) => {
             console.log("Form Submitted:", data);
-            setFormData((prev: StepThreeFormData) => ({ ...prev, ...data }))
+            setFormData((prev: OnBoardingFormDataType) => ({ ...prev, ...data }))
             nextStep();
         };
 

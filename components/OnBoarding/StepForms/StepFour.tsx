@@ -10,7 +10,7 @@ import { CheckCircle, User } from 'lucide-react'
 import React, { ForwardedRef, forwardRef, useImperativeHandle, useRef } from 'react'
 import { Controller } from 'react-hook-form'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-import { FormDataInterface } from '@/types/userTypes';
+import { FormDataInterface, OnBoardingFormDataType } from '@/types/userTypes';
 
 type Step4FormData = {
     workoutFrequency: string;
@@ -47,7 +47,7 @@ const StepFour = forwardRef(
 
         const onSubmit: SubmitHandler<Step4FormData> = (data) => {
             console.log('Form Submitted:', data);
-            setFormData((prev : Step4FormData)=> ({...prev, ...data}))
+            setFormData((prev : OnBoardingFormDataType)=> ({...prev, ...data}))
             nextStep();
         };
 

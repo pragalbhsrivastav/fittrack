@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { CheckCircle, Target, User } from 'lucide-react'
 import React, { ForwardedRef, forwardRef, useImperativeHandle, useRef } from 'react'
 import { Controller } from 'react-hook-form'
-import { FormDataInterface } from '@/types/userTypes';
+import { FormDataInterface, OnBoardingFormDataType } from '@/types/userTypes';
 
 
 type Step5FormData = {
@@ -45,7 +45,7 @@ const StepFive = forwardRef((
 
     const onSubmit: SubmitHandler<Step5FormData> = (data) => {
         console.log('Form Submitted:', data);
-        setFormData((prev: Step5FormData) => ({ ...prev, ...data }))
+        setFormData((prev: OnBoardingFormDataType) => ({ ...prev, ...data }))
     };
 
     useImperativeHandle(ref, () => ({
